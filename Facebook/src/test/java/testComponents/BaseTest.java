@@ -12,6 +12,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class BaseTest {
 	public WebDriver driver;
+	
+	
+	
+	
 	public WebDriver getDriver() {  //  WebDriver driver = getDriver(); // read from properties file read maven commands
 		try {
 			Properties testData = new Properties();

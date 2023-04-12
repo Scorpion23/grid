@@ -8,10 +8,12 @@ import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -98,15 +100,21 @@ public class StandAloneTest {
 		}
 
 		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//ngx-spinner"))));
+		
 		WebElement productaddedtocartsuccessfully = driver
 				.findElement(By.xpath("//div[@aria-label='Product Added To Cart']"));
 		String prdtaddedtcart = productaddedtocartsuccessfully.getText();
+		
 		System.out.println(prdtaddedtcart);
+		
+		
 		wait.until(
 				ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[text()=' Product Added To Cart ']")));
 		Assert.assertEquals(prdtaddedtcart, "Product Added To Cart");
 
 		driver.findElement(By.xpath("//button[@routerlink='/dashboard/cart']")).click();
+		
+		
         try {
             // Check the document.readyState property using JavascriptExecutor
             JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -132,6 +140,9 @@ public class StandAloneTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
+        
+        
 		List<WebElement> cartlist = driver.findElements(By.cssSelector(".cartWrap"));
 
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".cartWrap")));
@@ -156,8 +167,13 @@ public class StandAloneTest {
 
 		Select objSelect2 = new Select(driver.findElement(By.xpath("//div[1]/select[2]")));
 		objSelect2.selectByIndex(22);
-
-		driver.findElement(By.xpath("(//input[@type='text'])[1]")).sendKeys("9856856985214563");
+		
+		Actions mouse2 = new Actions(driver);
+		//WebElement creditcardno =driver.findElement(By.cssSelector("[value='4542 9931 9292 2293']"));
+		//mouse2.clickAndHold(creditcardno).sendKeys(Keys.chord(Keys.CONTROL, "a"), "1234 1234 1234 1234").build().perform();
+		
+		driver.findElement(By.cssSelector("[value='4542 9931 9292 2293']")).sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE), "1111 2222 3333 4444");
+		//driver.findElement(By.xpath("(//input[@type='text'])[1]")).sendKeys("9856856985214563");
 		driver.findElement(By.xpath("(//input[@type='text'])[2]")).sendKeys("254");
 		driver.findElement(By.xpath("(//input[@type='text'])[3]")).sendKeys("Dhoni");
 		
@@ -188,7 +204,7 @@ public class StandAloneTest {
 		//wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()=' India']")));
 		//driver.findElement(By.xpath("//span[text()=' India']")).click();
 
-
+		
 		driver.findElement(By.className("action__submit")).click();
 		System.out.println("waiting2");
 		String thankyou = driver.findElement(By.cssSelector("[class='hero-primary']")).getText();
