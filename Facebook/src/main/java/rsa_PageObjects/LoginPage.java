@@ -32,10 +32,12 @@ public class LoginPage extends AbstractComponents{
 	}
 	
 	
+	public void geturl(){
+		
+	driver.get("https://rahulshettyacademy.com/client");
 	
 	
-	
-	
+	}
 	
 	
 	

@@ -1,14 +1,29 @@
 package testComponents;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import rsa_PageObjects.LoginPage;
 
 public class BaseTest {
 	public WebDriver driver;
@@ -57,5 +72,51 @@ public class BaseTest {
 		}
 		return driver;
 	}
+	
+	
+	public List<HashMap<String, String>> getJsonDataToMap(String filepath) throws IOException {  // json - string - hasmap 
+
+	    String jsonContent = new String(Files.readAllBytes(Paths.get(filepath)));  // Use double slashes to escape backslashes in file path
+
+	    ObjectMapper mapper = new ObjectMapper();
+	    List<HashMap<String,String>> data = mapper.readValue(jsonContent, new TypeReference<List<HashMap<String,String>>>(){});
+	    return data;
+	}
+	
+	
+	public String getScreenshot(String testCaseName, WebDriver driver) throws IOException {
+		
+		
+		TakesScreenshot ts = (TakesScreenshot)driver;
+		File Source = ts.getScreenshotAs(OutputType.FILE);
+		File file = new File(System.getProperty("user.dir" + "//reports//"+testCaseName + ".png"));
+		FileUtils.copyFile(Source, file);
+		
+		return System.getProperty("user.dir") + "//reports//"+ testCaseName + ".png";//returns path
+	}
+	
+	
+	@BeforeMethod(alwaysRun = true)
+	
+	public LoginPage returnloginpage() {
+
+		driver = getDriver();
+
+		 LoginPage loginpage= new LoginPage(driver);   // *** this will activate the variable in line 19 public LoginPage loginpage;
+		 loginpage.geturl();
+
+		return loginpage;// an instance of login page
+
+	}
+	
+	
+	@AfterMethod(alwaysRun = true)
+	
+	public void tearDown() {
+		
+		driver.close();
+	}
+	
+	
 
 }
