@@ -35,14 +35,14 @@ public class BaseTest {
 		try {
 			Properties testData = new Properties();
 			FileInputStream fileInputStream = new FileInputStream(
-					System.getProperty("user.dir") + "\\src\\main\\java\\website_Resources\\GlobalData.properties");
+					System.getProperty("user.dir") + "\\src\\main\\java\\\resources\\GlobalData.properties");
 			testData.load(fileInputStream);
 			String browserName = System.getProperty("browser")!=null ? System.getProperty("browser"):testData.getProperty("browser");//java ternary operator  use maven commands to set gloal parameters
 			//String browserName = testData.getProperty("browser");
 			fileInputStream.close();
 
 			if (browserName.contains("chrome")) {
-				System.setProperty("webdriver.chrome.driver", "C:\\Users\\Dhoni\\Desktop\\Drivers\\chromedriver.exe");
+				System.setProperty("webdriver.chrome.driver", "D:\\Grid\\chromedriver.exe");
 				ChromeOptions options = new ChromeOptions();// for headless mode
 				if(browserName.contains("headless"))
 				{options.addArguments("headless");
@@ -51,11 +51,11 @@ public class BaseTest {
 				 driver.manage().window().setSize(new org.openqa.selenium.Dimension(1440, 900));
 				
 			} else if (browserName.equalsIgnoreCase("firefox")) {
-				System.setProperty("webdriver.gecko.driver", "C:\\Users\\Dhoni\\Desktop\\Drivers\\geckodriver.exe");
+				System.setProperty("webdriver.gecko.driver", "D:\\Grid\\geckodriver.exe");
 				driver = new FirefoxDriver();
 
 			} else if (browserName.equalsIgnoreCase("edge")) {
-				System.setProperty("webdriver.edge.driver", "C:\\Users\\Dhoni\\Desktop\\Drivers\\msedgedriver.exe");
+				System.setProperty("webdriver.edge.driver", "D:\\Grid\\msedgedriver.exe");
 				driver = new EdgeDriver();
 
 			} else {

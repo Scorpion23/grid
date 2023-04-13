@@ -18,11 +18,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class StandAloneTest {
 
-	
-	public static void main(String[] gs) throws InterruptedException, IOException {
+	@Test
+	public  void main() throws InterruptedException, IOException {
 		
 		HashMap<String, String> testCase1Data = (HashMap<String, String>) testData[0][0];
         String email = testCase1Data.get("email");

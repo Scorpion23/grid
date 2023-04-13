@@ -24,11 +24,13 @@ public class LoginPage extends AbstractComponents{
 	
 	
 	
-	public void getloginpage(String emailid,String password) {
+	public DashboardPage getloginpage(String emailid,String password) {
 	driver.get("https://rahulshettyacademy.com/client/");
 	email.sendKeys(emailid);
 	passsword.sendKeys(password);
 	loginbutton.click();
+	DashboardPage dashboardpage = new DashboardPage(driver);
+	return dashboardpage;
 	}
 	
 	
