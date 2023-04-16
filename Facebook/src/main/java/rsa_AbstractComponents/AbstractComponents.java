@@ -13,7 +13,7 @@ public class AbstractComponents {
 	
 	WebDriver driver;
 	
-	WebDriverWait wait;// declare but do not initialize because the time may vary for different webelements
+	WebDriverWait wait; // declare but do not initialize because the time may vary for different webelements
 	
 	public AbstractComponents(WebDriver driver) {
 		
@@ -22,12 +22,13 @@ public class AbstractComponents {
 	
 	public void waituntilvisibility(WebElement webelement) {
 
-		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		wait=new WebDriverWait(driver, Duration.ofSeconds(5));
 		wait.until(ExpectedConditions.visibilityOf(webelement));
 	}
 	
 	
 	public void waituntilinvisibility(WebElement webelement) {
+		wait=new WebDriverWait(driver, Duration.ofSeconds(5));
 
 		wait.until(ExpectedConditions.invisibilityOf(webelement));
 
@@ -36,8 +37,10 @@ public class AbstractComponents {
 	
 	public void waituntillvisibilitytrycatch(WebElement webelement) {
 		
-		 wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		
 		try {
+			wait=new WebDriverWait(driver, Duration.ofSeconds(5));
+
 			wait.until(ExpectedConditions
 					.visibilityOf(webelement));
 		} catch (Exception e) {

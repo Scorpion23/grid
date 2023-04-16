@@ -72,8 +72,33 @@
          <version>2.13.1</version>
       </dependency>
 
-    
-    
+
+
+      <dependency>
+      	<groupId>com.rahulshettyacademy.www</groupId>
+      	<artifactId>Selenium</artifactId>
+      	<version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
   </dependencies>
 
  

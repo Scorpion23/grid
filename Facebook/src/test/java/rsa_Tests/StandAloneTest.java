@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -20,26 +21,28 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class StandAloneTest {
+import testComponents.BaseTest;
+
+public class StandAloneTest extends BaseTest{
 
 	@Test
-	public  void main() throws InterruptedException, IOException {
+	public  void standalone() throws InterruptedException, IOException {
 		
 		HashMap<String, String> testCase1Data = (HashMap<String, String>) testData[0][0];
         String email = testCase1Data.get("email");
         String password = testCase1Data.get("password");
         String product = testCase1Data.get("product");
         String country = testCase1Data.get("country");
+        WebDriver driver = getDriver();
 		
 
-		System.setProperty("webdriver.gecko.driver", "D:\\Grid\\geckodriver.exe");
-		WebDriver driver = new FirefoxDriver();
+
 
 		// System.setProperty("webdriver.chrome.driver","D:\\Grid\\chromedriver.exe");
 		// WebDriver driver = new ChromeDriver();
 
 		driver.manage().window().maximize();
-
+		System.out.println(driver.manage().window().getSize());
 		driver.get("https://rahulshettyacademy.com/client");
 		driver.findElement(By.id("userEmail")).sendKeys(email);
 		driver.findElement(By.id("userPassword")).sendKeys(password);
@@ -163,33 +166,42 @@ public class StandAloneTest {
 
 		// Select objSelect = new
 		// Select(driver.findElement(By.xpath("//div[1]/select[1]")));
-		Select objSelect = new Select(driver.findElement(By.className("ddl")));
-		objSelect.selectByIndex(9);
+		/*
+		 * Select objSelect = new
+		 * Select(driver.findElement(By.xpath("//div[1]/select[1]")));
+		 * objSelect.selectByIndex(9);
+		 * 
+		 * Select objSelect2 = new
+		 * Select(driver.findElement(By.xpath("//div[1]/select[2]")));
+		 * objSelect2.selectByIndex(22);
+		 * 
+		 * //Actions mouse2 = new Actions(driver); //WebElement creditcardno
+		 * =driver.findElement(By.cssSelector("[value='4542 9931 9292 2293']"));
+		 * //mouse2.clickAndHold(creditcardno).sendKeys(Keys.chord(Keys.CONTROL, "a"),
+		 * "1234 1234 1234 1234").build().perform();
+		 * 
+		 * driver.findElement(By.cssSelector("[value='4542 9931 9292 2293']")).sendKeys(
+		 * Keys.chord(Keys.CONTROL, "a", Keys.DELETE), "1111 2222 3333 4444");
+		 * //driver.findElement(By.xpath("(//input[@type='text'])[1]")).sendKeys(
+		 * "9856856985214563");
+		 * driver.findElement(By.xpath("(//input[@type='text'])[2]")).sendKeys("254");
+		 * driver.findElement(By.xpath("(//input[@type='text'])[3]")).sendKeys("Dhoni");
+		 * 
+		 * 
+		 */
+		
+		/*
+		 * driver.findElement(By.cssSelector("[name='coupon']")).sendKeys("welcome");
+		 * 
+		 * driver.findElement(By.xpath("//button[text()='Apply Coupon']")).click();
+		 * WebElement incorrectC =
+		 * driver.findElement(By.xpath("//div[@aria-label='Please Enter Coupon']"));
+		 * 
+		 * wait.until(ExpectedConditions.visibilityOf(incorrectC)); String coupon =
+		 * incorrectC.getText(); System.out.println(coupon);
+		 * wait.until(ExpectedConditions.invisibilityOf(incorrectC));
+		 */
 
-		Select objSelect2 = new Select(driver.findElement(By.xpath("//div[1]/select[2]")));
-		objSelect2.selectByIndex(22);
-		
-		Actions mouse2 = new Actions(driver);
-		//WebElement creditcardno =driver.findElement(By.cssSelector("[value='4542 9931 9292 2293']"));
-		//mouse2.clickAndHold(creditcardno).sendKeys(Keys.chord(Keys.CONTROL, "a"), "1234 1234 1234 1234").build().perform();
-		
-		driver.findElement(By.cssSelector("[value='4542 9931 9292 2293']")).sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE), "1111 2222 3333 4444");
-		//driver.findElement(By.xpath("(//input[@type='text'])[1]")).sendKeys("9856856985214563");
-		driver.findElement(By.xpath("(//input[@type='text'])[2]")).sendKeys("254");
-		driver.findElement(By.xpath("(//input[@type='text'])[3]")).sendKeys("Dhoni");
-		
-		//driver.findElement(By.cssSelector("[name='coupon']")).sendKeys("welcome");
-		
-		driver.findElement(By.xpath("//button[text()='Apply Coupon']")).click();
-		WebElement incorrectC = driver.findElement(By.xpath("//div[@aria-label='Please Enter Coupon']"));
-
-		wait.until(ExpectedConditions.visibilityOf(incorrectC));
-		String coupon = incorrectC.getText();
-		System.out.println(coupon);
-		wait.until(ExpectedConditions.invisibilityOf(incorrectC));
-		
-		
-		
 		
 
 		driver.findElement(By.cssSelector("input[placeholder='Select Country']")).sendKeys("ind");
@@ -200,23 +212,40 @@ public class StandAloneTest {
 		List<WebElement> countrySelected = countryList.stream().filter(countryl -> countryl.getText().equalsIgnoreCase("India")).collect(Collectors.toList());
 
 		countrySelected.get(0).click();
-			
 		
+		/*
+		 * Actions action = new Actions(driver); action.moveByOffset(1555,
+		 * 182).click().build().perform(); action.moveByOffset(1530,
+		 * 400).click().build().perform();
+		 */
+
 		//wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()=' India']")));
 		//driver.findElement(By.xpath("//span[text()=' India']")).click();
 
+
 		
 		driver.findElement(By.className("action__submit")).click();
-		System.out.println("waiting2");
-		String thankyou = driver.findElement(By.cssSelector("[class='hero-primary']")).getText();
+		
+
+		String thankyou = driver.findElement(By.cssSelector(".hero-primary")).getText();
 		System.out.println(thankyou);
 		Assert.assertTrue(thankyou.toLowerCase().contains("thankyou"));
+		
+		
+		
 
 		driver.findElement(By.cssSelector(".fa-sign-out")).click();
-		WebElement logout = driver.findElement(By.xpath("//div[text()=' Logout Successfully ']"));
-		wait.until(ExpectedConditions.visibilityOf(logout));
-		String out = logout.getText();
-		System.out.println(out);
+		
+		
+		
+
+	         WebElement logout = driver.findElement(By.xpath("//div[text()=' Logout Successfully ']"));
+				wait.until(ExpectedConditions.visibilityOf(logout));
+				String out = logout.getText();
+				System.out.println(out);
+		
+		
+
 		driver.quit();
 
 	}

@@ -30,7 +30,7 @@ public class DashboardPage extends AbstractComponents {
 	@FindBy(xpath = "//div[@aria-label='Product Added To Cart']") private WebElement productaddedtocart;
 	@FindBy(xpath="//button[@routerlink='/dashboard/cart']") private WebElement cartbutton;
 
-	public void waituntillpageloadfirefox() {
+	public void waituntillpageload() {
 
 		super.waituntillvisibilitytrycatch(loginsuccess);
 	}

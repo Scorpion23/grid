@@ -18,7 +18,7 @@ public class ConfirmationPage extends AbstractComponents {
 		
 	}
 	
-	@FindBy(css  = "[class='hero-primary']") private WebElement thankyouelement;
+	@FindBy(css  = ".hero-primary") private WebElement thankyouelement;
 	@FindBy(xpath  ="//div[text()=' Logout Successfully ']") private WebElement logoutelement;
 	
 	public String assertconfirm () {	
