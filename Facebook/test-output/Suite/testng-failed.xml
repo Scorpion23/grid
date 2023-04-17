@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT" verbose="2">
+<suite parallel="tests" name="Failed suite [Suite]" guice-stage="DEVELOPMENT" verbose="2">
   <listeners>
     <listener class-name="testComponents.Listeners"/>
   </listeners>
-  <test thread-count="5" name="StandAlone Test(failed)" verbose="2">
-    <classes>
-      <class name="rsa_Tests.StandAloneTest">
-        <methods>
-          <include name="standalone"/>
-          <include name="returnloginpage"/>
-        </methods>
-      </class> <!-- rsa_Tests.StandAloneTest -->
-    </classes>
-  </test> <!-- StandAlone Test(failed) -->
-  <test thread-count="5" name="ErrorValidations Test(failed)" verbose="2">
+  <test thread-count="5" parallel="tests" name="ErrorValidations Test(failed)" verbose="2">
     <classes>
       <class name="rsa_Tests.ErrorValidations">
         <methods>
@@ -24,4 +14,14 @@
       </class> <!-- rsa_Tests.ErrorValidations -->
     </classes>
   </test> <!-- ErrorValidations Test(failed) -->
+  <test thread-count="5" parallel="tests" name="StandAlone Test(failed)" verbose="2">
+    <classes>
+      <class name="rsa_Tests.StandAloneTest">
+        <methods>
+          <include name="standalone"/>
+          <include name="returnloginpage"/>
+        </methods>
+      </class> <!-- rsa_Tests.StandAloneTest -->
+    </classes>
+  </test> <!-- StandAlone Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.OutputType;
@@ -35,7 +34,6 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 
 import rsa_PageObjects.LoginPage;
 
@@ -133,23 +131,51 @@ public class BaseTest {
 	}
 	
 	
-
-	public String getScreenShot(String MethodName,WebDriver driver) throws IOException 
 	
 	
+	public String getScreenshot(String testCaseName, WebDriver driver) throws IOException
 
 	{
-		TakesScreenshot ts = (TakesScreenshot) driver;// casting
-		
-		File source = ts.getScreenshotAs(OutputType.FILE);
-		File file = new File(System.getProperty("user.dir") + "//FailedTestsScreenshots//" + MethodName + ".png");
-		String Screenshotpath = System.getProperty("user.dir") + "//FailedTestsScreenshots//" + MethodName + ".png";
-		FileUtils.copyFile(source, file);
-		return Screenshotpath;
+
+		TakesScreenshot ts = (TakesScreenshot) driver;
+
+		File Source = ts.getScreenshotAs(OutputType.FILE);
+
+		File Destination = new File(System.getProperty("user.dir")+"//reports//"+testCaseName+".png");
+
+		FileUtils.copyFile(Source, Destination);
+
+	
+		return System.getProperty("user.dir")+"//reports//"+testCaseName+".png";
+
 
 	}
 	
 
+
+			
+			
+	public static String  takeScreenshotBASE64() {  //wont generate screenshot
+		
+		String base64ScreenshotCode =((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
+		return base64ScreenshotCode;
+	}
+	
+	
+	public static String  takeScreenshotBASE64Driver(WebDriver driver) {//for listeners class
+		
+		String base64ScreenshotCode =((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
+		return base64ScreenshotCode;
+	}
+	
+	
+	
+	public static String takeScreenshotAndReturnPath(String fileName) throws IOException {
+		File Source = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		File Destination = new File(System.getProperty("user.dir")+ "//Screenshots//"+fileName+".png");
+		FileUtils.copyFile(Source, Destination);
+		return Destination.getAbsolutePath();
+	}
 	
 	/*
 	 * public String CaptureScreen(String imageName,WebDriver driver ) { File
@@ -187,7 +213,7 @@ public class BaseTest {
 	    Date date = new Date(0);
 	    String dateStr = format.format(date);
 	    
-		String path = System.getProperty("user.dir") + "//Reports//Spark.html";
+		String path = System.getProperty("user.dir") + "//reports//Spark.html";
 		ExtentReports extent = new ExtentReports();
 		ExtentSparkReporter spark = new ExtentSparkReporter(path);
 	
