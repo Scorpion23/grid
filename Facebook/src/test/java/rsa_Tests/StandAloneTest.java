@@ -142,9 +142,9 @@ public class StandAloneTest extends BaseTest{
         
         
         
-		List<WebElement> cartlist = driver.findElements(By.cssSelector(".cartWrap"));
+		List<WebElement> cartlist = driver.findElements(By.cssSelector(".items"));
 
-		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".cartWrap")));
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".items")));
 
 		for (int i = 0; i < cartlist.size(); i++) {
 			if (cartlist.get(i).getText().toLowerCase().contains(product)) {
@@ -185,21 +185,11 @@ public class StandAloneTest extends BaseTest{
 		 * 
 		 */
 		
-		/*
-		 * driver.findElement(By.cssSelector("[name='coupon']")).sendKeys("welcome");
-		 * 
-		 * driver.findElement(By.xpath("//button[text()='Apply Coupon']")).click();
-		 * WebElement incorrectC =
-		 * driver.findElement(By.xpath("//div[@aria-label='Please Enter Coupon']"));
-		 * 
-		 * wait.until(ExpectedConditions.visibilityOf(incorrectC)); String coupon =
-		 * incorrectC.getText(); System.out.println(coupon);
-		 * wait.until(ExpectedConditions.invisibilityOf(incorrectC));
-		 */
+
 
 		
 
-		driver.findElement(By.cssSelector("input[placeholder='Select Country']")).sendKeys("ind");
+		driver.findElement(By.cssSelector("[placeholder='Select Country']")).sendKeys("1a");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ta-results")));
 
 		List<WebElement> countryList = driver.findElements(By.cssSelector("button[class*='list-group-item']"));
@@ -208,21 +198,13 @@ public class StandAloneTest extends BaseTest{
 
 		countrySelected.get(0).click();
 		
-		/*
-		 * Actions action = new Actions(driver); action.moveByOffset(1555,
-		 * 182).click().build().perform(); action.moveByOffset(1530,
-		 * 400).click().build().perform();
-		 */
-
-		//wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()=' India']")));
-		//driver.findElement(By.xpath("//span[text()=' India']")).click();
 
 
 		
 		driver.findElement(By.className("action__submit")).click();
 		
-
-		String thankyou = driver.findElement(By.cssSelector(".hero-primary")).getText();
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("td[class='box']"))));
+		String thankyou = driver.findElement(By.cssSelector("td[class='box']")).getText();
 		System.out.println(thankyou);
 		Assert.assertTrue(thankyou.toLowerCase().contains("thankyou"));
 		

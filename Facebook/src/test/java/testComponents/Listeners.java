@@ -29,7 +29,10 @@ public class Listeners extends BaseTest implements ITestListener {
 	public void onTestStart(ITestResult result) {
 
 		// TODO Auto-generated method stub
+		
 
+		
+		
 		test = extent.createTest(result.getMethod().getMethodName());// unique thread id(ErrorValidationTest)->test
 		ObjThreadLocal.set(test);//pushing our object into Threadlocal for test object is assigned unique thread id and pushed into thread local
 	}//set method pushes the object into ThreadLocal
@@ -111,6 +114,7 @@ public class Listeners extends BaseTest implements ITestListener {
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
 
 		// TODO Auto-generated method stub
+        System.out.println("Test failed but it is in defined success ratio " + result.getMethod().getMethodName());
 
 	}
 

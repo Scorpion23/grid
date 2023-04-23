@@ -17,11 +17,15 @@
   
     <test thread-count="5" name="ErrorValidations Test">
     <classes>
-      <class name="rsa_Tests.ErrorValidations"/>
+      <class name="rsa_Tests.ErrorValidationsTest"/>
     </classes>
   </test> <!-- Test -->
   
-  
+      <test thread-count="5" name="DataDriven Test">
+    <classes>
+      <class name="rsa_Tests.DataDrivenTest"/>
+    </classes>
+  </test> <!-- Test -->
   
   
 </suite> <!-- Suite -->

@@ -3,12 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="rsa_Tests.ErrorValidations">
+      <class name="rsa_Tests.SeleniumGridF">
         <methods>
-          <include name="correctlogin"/>
-          <include name="returnloginpage"/>
+          <include name="HomepagecheckF"/>
         </methods>
-      </class> <!-- rsa_Tests.ErrorValidations -->
+      </class> <!-- rsa_Tests.SeleniumGridF -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

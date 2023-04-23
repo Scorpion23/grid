@@ -10,6 +10,7 @@ import rsa_AbstractComponents.AbstractComponents;
 public class LoginPage extends AbstractComponents{
 	
 	WebDriver driver;
+	
 
 	public  LoginPage(WebDriver driver) {
 		super(driver);
@@ -21,7 +22,7 @@ public class LoginPage extends AbstractComponents{
 	
 	@FindBy(id ="userPassword") private WebElement passsword;
 	@FindBy(id ="login") private WebElement loginbutton;
-	
+	@FindBy(xpath="//a[text()='Register here']") private WebElement registrationpagebtn;
 	
 	
 	public DashboardPage getloginpage(String emailid,String password) {
@@ -41,6 +42,14 @@ public class LoginPage extends AbstractComponents{
 	
 	}
 	
+	
+	public RegistrationPage getRegistrationpage() 
+	{
+	registrationpagebtn.click();
+	RegistrationPage registrationpage =new RegistrationPage(driver);
+		return registrationpage;
+		
+	}
 	
 	
 	

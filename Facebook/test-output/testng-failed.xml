@@ -1,27 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite parallel="tests" name="Failed suite [Suite]" guice-stage="DEVELOPMENT" verbose="2">
-  <listeners>
-    <listener class-name="testComponents.Listeners"/>
-  </listeners>
-  <test thread-count="5" parallel="tests" name="ErrorValidations Test(failed)" verbose="2">
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="rsa_Tests.ErrorValidations">
+      <class name="rsa_Tests.SeleniumGridF">
         <methods>
-          <include name="correctlogin"/>
-          <include name="returnloginpage"/>
+          <include name="HomepagecheckF"/>
         </methods>
-      </class> <!-- rsa_Tests.ErrorValidations -->
+      </class> <!-- rsa_Tests.SeleniumGridF -->
     </classes>
-  </test> <!-- ErrorValidations Test(failed) -->
-  <test thread-count="5" parallel="tests" name="StandAlone Test(failed)" verbose="2">
-    <classes>
-      <class name="rsa_Tests.StandAloneTest">
-        <methods>
-          <include name="standalone"/>
-          <include name="returnloginpage"/>
-        </methods>
-      </class> <!-- rsa_Tests.StandAloneTest -->
-    </classes>
-  </test> <!-- StandAlone Test(failed) -->
-</suite> <!-- Failed suite [Suite] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
